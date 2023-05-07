@@ -20,7 +20,7 @@
   <script>
   
   import axios from 'axios';
-
+  
   export default {
     name: 'ViewPatientView',
     data() {
@@ -39,16 +39,16 @@
       }
     },
     created() {
-  // Fetch patient data from the API and populate the form
-  axios.get(`/api/patients/${this.$route.params.id}`)
-    .then(response => {
-      this.patient = response.data.patient;
-    })
-    .catch(error => {
-      console.log(error);
-      alert('Error fetching patient data!');
-    });
-}
+      // Fetch patient data from the API and populate the view
+      axios.get(`/api/patients/${this.$route.params.id}`)
+        .then(response => {
+          this.patient = response.data.patient;
+        })
+        .catch(error => {
+          console.log(error);
+          alert('Error fetching patient data!');
+        });
+    }
   };
   </script>
   

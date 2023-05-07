@@ -23,6 +23,26 @@ export function makeServer({ environment = "development" } = {}) {
         const id = request.params.id;
         return schema.patients.find(id);
       });
+      
+      this.put('/patients/:id', (schema, request) => {
+        const id = request.params.id;
+        const attrs = JSON.parse(request.requestBody);
+    
+        // Find the patient with the given id
+        const patient = schema.patients.find(id);
+    
+        if (!patient) {
+          return new Response(404, {}, { message: 'Patient not found' });
+        }
+    
+        // Update the patient record with the new attributes
+        patient.update(attrs);
+    
+        // Return a response indicating the success of the update
+        return {
+          message: 'Patient updated successfully!',
+        };
+      });
 
       this.post('/patients', (schema, request) => {
         const attrs = JSON.parse(request.requestBody);

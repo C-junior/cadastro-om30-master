@@ -31,7 +31,7 @@
       </div>
       <div>
         <label for="cns">CNS*:</label>
-        <input type="text" id="cns" name="cns" v-model="cns" required>
+        <input type="text" id="cns" name="cns" v-model="cns" required v-mask="['###############']">       
       </div>
       <div>
         <label for="cep">CEP:</label>
@@ -134,6 +134,16 @@ export default {
     },
 
     savePatient() {
+     // Validate CNS
+     const isValidCNS = this.validateCNS(this.cns);
+      const isValidCNSProv = this.validateCNSProv(this.cns);
+
+      if (!isValidCNS && !isValidCNSProv) {
+        alert('CNS inválido! Por favor, verifique o número do CNS e tente novamente.');
+        return;
+      }
+
+
   const patient = {
     photo: this.photo,
     name: this.name,

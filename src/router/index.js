@@ -1,9 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router';
 
+import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import PatientView from '../views/PatientView.vue';
 import LoginForm from '../components/LoginForm.vue';
+import EditPatientView from '../views/EditPatientView.vue';
+import ViewPatientView from '../views/ViewPatientView.vue';
 
 const routes = [
   {
@@ -25,6 +27,16 @@ const routes = [
     path: '/patient',
     name: 'patient',
     component: PatientView
+  },
+  {
+    path: '/patient/edit/:id',
+    name: 'EditPatient',
+    component: EditPatientView
+  },
+  {
+    path: '/patient/view/:id',
+    name: 'ViewPatient',
+    component: ViewPatientView
   }
 ];
 
