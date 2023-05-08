@@ -58,10 +58,62 @@ export function makeServer({ environment = "development" } = {}) {
     },
 
     seeds(server) {
-        server.create('patient', { name: "Test 1", motherName: "mom1", birthdate: "2023-05-13", cpf: "020.522.843-75", cns: "1233123", address: "JK" });
-        server.create('patient', { name: "Test 2", motherName: "mom1", birthdate: "2023-05-13", cpf: "020.522.843-73", cns: "1233123", address: "JK" });
-        server.create('patient', { name: "Test 3", motherName: "mom1", birthdate: "2023-05-13", cpf: "020.522.843-72", cns: "1233123", address: "JK" });
-      server.create('patient', { name: "Test 4", motherName: "mom1", birthdate: "2023-05-13", cpf: "020.522.843-72", cns: "1233123", address: "JK" });
+      
+      server.create('patient', {
+        name: 'John Doe',
+        motherName: 'Jane Doe',
+        birthdate: '2023-05-13',
+        cpf: '111.222.333-44',
+        cns: '987654321098765',
+        address: {
+          street: '123 Main St',
+          neighborhood: 'Downtown',
+          city: 'New York',
+          state: 'NY'
+        }
+      });
+    
+      server.create('patient', {
+        name: 'Alice Smith',
+        motherName: 'Carol Smith',
+        birthdate: '2023-05-13',
+        cpf: '555.666.777-88',
+        cns: '543210987654321',
+        address: {
+          street: '456 Elm St',
+          neighborhood: 'Suburbia',
+          city: 'Los Angeles',
+          state: 'CA'
+        }
+      });
+    
+      server.create('patient', {
+        name: 'David Johnson',
+        motherName: 'Susan Johnson',
+        birthdate: '2023-05-13',
+        cpf: '999.888.777-66',
+        cns: '123456789098765',
+        address: {
+          street: '789 Oak Ave',
+          neighborhood: 'Rural',
+          city: 'Chicago',
+          state: 'IL'
+        }
+      });
+    
+      server.create('patient', {
+        name: 'Emily Wilson',
+        motherName: 'Olivia Wilson',
+        birthdate: '2023-05-13',
+        cpf: '444.555.666-77',
+        cns: '876543210987654',
+        address: {
+          street: '321 Pine Rd',
+          neighborhood: 'Suburbia',
+          city: 'San Francisco',
+          state: 'CA'
+        }
+      });
     },
   });
 

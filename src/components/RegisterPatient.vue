@@ -1,60 +1,76 @@
 <template>
   <div>
-    <h1>Cadastro de Paciente</h1>
+  
     <form @submit.prevent="savePatient">
-      <div>
-    <label for="photo">Foto do Paciente:</label>
-    <input type="file" id="photo" name="photo" @change="handlePhotoUpload">
-  </div>
- 
-    <!-- Photo preview -->
-    <div v-if="photo">
-      <label>Foto Preview:</label>
-      <img :src="photoPreview" alt="Preview" width="200">
-    </div>
-    
-      <div>
-        <label for="name">Nome Completo do Paciente*:</label>
-        <input type="text" id="name" name="name" v-model="name" required>
+      <div class="patient-form-container">
+        <h1 class="patient-form-title">Cadastro de Paciente</h1>
+        <div class="form-field">
+          <label for="photo">Foto do Paciente:</label>
+          <input type="file" id="photo" name="photo" @change="handlePhotoUpload">
+        </div>
+
+        <!-- Photo preview -->
+        <div v-if="photo" class="photo-preview">
+          <label>Foto Preview:</label>
+          <img :src="photoPreview" alt="Preview" width="200">
+        </div>
+
+        <div class="invisible-container">
+          <div class="form-field">
+            <label for="name">Nome Completo do Paciente<span class="required-field">*</span>:</label>
+            <input type="text" id="name" name="name" v-model="name" required class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="motherName">Nome Completo da Mãe<span class="required-field">*</span>:</label>
+            <input type="text" id="motherName" name="motherName" v-model="motherName" required class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="birthdate">Data de Nascimento<span class="required-field">*</span>:</label>
+            <input type="date" id="birthdate" name="birthdate" v-model="birthdate" required class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="cpf">CPF<span class="required-field">*</span>:</label>
+            <input type="text" id="cpf" name="cpf" v-model="cpf" required class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="cns">CNS<span class="required-field">*</span>:</label>
+            <input type="text" id="cns" name="cns" v-model="cns" required v-mask="['###############']" class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="cep">CEP:</label>
+            <input id="cep" type="text" v-model="cep" placeholder="Digite o CEP" @blur="fetchAddress" v-mask="['#####-###']" class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="rua">Rua:</label>
+            <input id="rua" type="text" v-model="address.street" placeholder="Rua" class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="bairro">Bairro:</label>
+            <input id="bairro" type="text" v-model="address.neighborhood" placeholder="Bairro" class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="cidade">Cidade:</label>
+            <input id="cidade" type="text" v-model="address.city" placeholder="Cidade" class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="estado">Estado:</label>
+            <input id="estado" type="text" v-model="address.state" placeholder="Estado" class="form-input">
+          </div>
+        </div>
+        <div class="button-group">
+          <button type="submit" class="submit-button">Salvar</button>
+          <button @click="goBack" class="goBack-button">Voltar</button>
+        </div>
       </div>
-      <div>
-        <label for="motherName">Nome Completo da Mãe*:</label>
-        <input type="text" id="motherName" name="motherName" v-model="motherName" required>
-      </div>
-      <div>
-        <label for="birthdate">Data de Nascimento*:</label>
-        <input type="date" id="birthdate" name="birthdate" v-model="birthdate" required>
-      </div>
-      <div>
-        <label for="cpf">CPF*:</label>
-        <input type="text" id="cpf" name="cpf" v-model="cpf" required>
-      </div>
-      <div>
-        <label for="cns">CNS*:</label>
-        <input type="text" id="cns" name="cns" v-model="cns" required v-mask="['###############']">       
-      </div>
-      <div>
-        <label for="cep">CEP:</label>
-        <input id="cep" type="text" v-model="cep" placeholder="Digite o CEP" @blur="fetchAddress" v-mask="['#####-###']">
-      </div>     
-      <div>
-        <label for="rua">Rua:</label>
-        <input id="rua" type="text" v-model="address.street" placeholder="Rua">
-      </div>
-      <div>
-        <label for="bairro">Bairro:</label>
-        <input id="bairro" type="text" v-model="address.neighborhood" placeholder="Bairro">
-      </div>
-      <div>
-        <label for="cidade">Cidade:</label>
-        <input id="cidade" type="text" v-model="address.city" placeholder="Cidade">
-      </div>
-      <div>
-        <label for="estado">Estado:</label>
-        <input id="estado" type="text" v-model="address.state" placeholder="Estado">
-      </div>
-      <button type="submit">Salvar</button>
-      <button @click="goBack">Voltar</button>
     </form>
   </div>
 </template>
@@ -163,7 +179,6 @@ export default {
   axios.post('./api/patients', patient)
     .then(response => {
       (response.data);
-      alert('Paciente cadastrado com sucesso!');
       // Reset the form fields
       this.name = '';
       this.motherName = '';
@@ -208,3 +223,95 @@ fetchAddress() {
     
   
   </script>
+
+<style scoped>
+  .patient-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 64px;
+    margin: auto;
+    margin-top: 16px;
+    background-color: rgb(196, 196, 196);
+    transition: box-shadow 0.3s;
+    border-radius: 10px;
+    border: 2px solid #9f002b;
+    width: 90%;
+    float: left;
+  }
+
+  .patient-form-container:hover {
+    box-shadow: 0 2px 11px rgba(20, 20, 20, 0.2);
+  }
+
+  .patient-form-title {
+    text-align: center;
+    font-size: 24px;
+    color: #9f002b;
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+
+  .patient-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .form-field {
+    flex-basis: 48%;
+    margin-bottom: 20px;
+  }
+
+  .form-field label {
+    color: #9f002b;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #9f002b;
+    border-radius: 4px;
+  }
+
+  .button-group {
+    margin-left: 20px;
+    
+  }
+
+  .invisible-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+  .photo-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .photo-preview label {
+    margin-bottom: 8px;
+  }
+
+  .photo-preview img {
+    width: 200px;
+  }
+
+  .submit-button,
+  .goBack-button {
+    padding: 10px 20px;
+    background-color: #9f002b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 16px;
+  }
+
+  .required-field {
+    color: red;
+  }
+</style>

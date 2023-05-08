@@ -5,13 +5,11 @@
   margin: 0 auto;
   padding: 2rem;
 
-  font-weight: normal;
+  font-weight: 600;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+a{
+  text-decoration: none; 
   transition: 0.4s;
 }
 
@@ -24,12 +22,11 @@ a,
 @media (min-width: 1024px) {
   body {
     display: flex;
-    place-items: center;
+  
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+   
     padding: 0 2rem;
   }
 }

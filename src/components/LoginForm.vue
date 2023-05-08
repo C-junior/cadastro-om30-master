@@ -1,19 +1,20 @@
+
 <template>
-  <div v-if="!isAuthenticated">
-    <h1>Login</h1>
-    <form @submit.prevent="login">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" required>
+  <div v-if="!isAuthenticated" class="login-container">
+    <h1 class="login-title">Login</h1>
+    <form @submit.prevent="login" class="login-form">
+      <span class="hint"> Usuario = admin, Senha = 123</span>
+      <div class="form-field">
+        <input type="text" placeholder="Usuario" id="username" v-model="username" class="form-input" required>
       </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required>
+      <div class="form-field">
+        <input type="password" placeholder="Senha" id="password" v-model="password" class="form-input" required>
       </div>
-      <button type="submit">Login</button>
+      <button type="submit" class="login-button">Login</button>
     </form>
   </div>
 </template>
+
 
 <script>
 import { ref, onMounted, onUnmounted } from 'vue';
@@ -65,3 +66,60 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  margin: auto;
+  margin-top: 15%;
+  background-color: rgb(223, 223, 223);
+  transition: box-shadow .3s;
+  border-radius:10px;
+  border: 2px solid #b40707;
+  float: left;
+}
+
+.login-container:hover{
+  box-shadow: 0 2px 11px rgba(20, 20, 20, 0.2);
+}
+.hint{
+  color: rgb(27, 27, 27);
+  padding-bottom: 16px;
+}
+.login-title {
+  font-size: 24px;
+  color: #b40707;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-input {
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 4px;
+}
+
+.login-button {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+</style>

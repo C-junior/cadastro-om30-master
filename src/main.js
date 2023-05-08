@@ -4,8 +4,7 @@ import router from './router'
 import { makeServer } from "./server"
 import VueTheMask from 'vue-the-mask'
 
-// Vue.config.productionTip = false
-
+// eslint-disable-next-line
 if (process.env.NODE_ENV === "development") {
   makeServer()
 }
