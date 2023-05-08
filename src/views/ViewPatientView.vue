@@ -103,7 +103,7 @@
     padding: 64px;
     margin: auto;
     margin-top: 16px;
-    background-color: rgb(196, 196, 196);
+    background-color:#f5f5f5;
     transition: box-shadow 0.3s;
     border-radius: 10px;
     border: 2px solid #9f002b;

@@ -76,7 +76,7 @@ export default {
   padding: 64px;
   margin: auto;
   margin-top: 15%;
-  background-color: rgb(223, 223, 223);
+  background-color:#f5f5f5;
   transition: box-shadow .3s;
   border-radius:10px;
   border: 2px solid #b40707;
